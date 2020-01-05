@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+    <!-- 头部 -->
+    <header class="header">
+        <div class="container">
+            
+                <a href="index.html" class="title">fcd个人博客 | 技术博客</a>
+
+                <ul class="menu">
+                    <li><a href="/index.html">首页</a></li>
+                    <li><a href="/sitemap.html">地图</a></li>
+                    <li><a href="/about.html">关于</a></li>
+                    <li><a href="/guestbook.html">留言</a></li>
+                </ul>
+            
+
+            <div class="search_bar" id="search_bar">
+                <input type="text" id="search_text" placeholder="请输入关键词查找">
+                <button v-on:click="getSearchText()">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 中间内容 -->
+    <div class="content">
+        <div class="content_left">
+            <div class="everyday" id="every_day">
+                <span>每日一句</span>
+                <p v-html="getContent"></p>
+                
+            </div>
+
+            <div class="article_list" id="articleId_list">
+                <div class="article" v-for="item in articleList">
+                    <a v-bind:href="item.link" class="article_title">{{item.title}}</a>
+                    <p class="article_content">
+                        {{item.content}}
+                    </p>
+                    <div class="article_foot">
+                        <p>发布于{{item.date}} |  浏览({{item.views}}) | Tags：{{item.tag}}</p>
+                    </div>
+                </div>
+
+                <div class="page_tool">
+                    <ul >
+                        <li v-for="item in pageNumList" v-bind:class="{cur_page: (item.text == page)}" v-on:click="jumpToPage(item.page)">{{item.text}}</li>
+                        <!-- <li>上一页</li>
+                        <li class="cur_page">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>···</li>
+                        <li>下一页</li> -->
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="content_right">
+            <div class="right_module" id="random_tags">
+                <p>随机标签</p>
+                <a v-bind:href="item.link" v-for="item in tagList" v-bind:style="{color:randomColor(), fontSize:randomSize()}">{{item.tag}}</a>
+            </div>
+            
+            <div class="right_module">
+                    <p >最近热门</p>
+                    <ul class="recently_hot" id="new_comments">
+                        <li v-for="item in commentsList"><a v-bind:href="item.link" v-bind:title="item.comment">{{item.comment}}</a></li>
+                    </ul>
+            </div>
+
+            <div class="right_module">
+                    <p >最新评论</p>
+                    <ul class="latest_comments" id="new_link">
+                        <li v-for="item in linksList">
+                            <div>
+                                <span>{{item.name}}</span>
+                                <span>{{item.date}}</span>
+                            </div>
+                            
+                            <p><a v-bind:href="item.link" v-bind:title="item.comment">{{item.comment}}</a></p>
+                        </li>
+                    </ul>
+            </div>
+
+            <div class="right_module">
+                    <p >友情链接</p>
+                    <div class="friendship_link" >
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                        <span><a href="#">挨踢茶馆</a></span>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 尾部 -->
+    <footer class="footer">
+        <ul>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+            <li><a href="#">幽默搞笑</a></li>
+        </ul>
+        <p>Copyright © 2010-2019 郑晓个人博客 All rights reserved. 由免费开源的WordPress强力驱动. 鲁ICP备14017955号站长统</p>
+    </footer>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/base.js"></script>
+</body>
+</html>
